@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">Hari Pertama</string>
+    <string name="lupa_pasword_silahkan_klik">Lupa Pasword ?<b> Silahkan Klik</b></string>
+    <string name="bahasa_indonesia">Bahasa Indonesia</string>
+    <string name="belum_punya_akun_daftar">Belum Punya Akun? <b>Daftar</b></string>
+</resources>
