@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -15,7 +14,7 @@ import android.widget.Toast;
 public class TambahActivity extends AppCompatActivity {
 
     protected Cursor cursor;
-    DataHelper dbHelper;
+    DataHelper  dbHelper;
     TextView et_tambah;
     Button bt_tambah;
     Makanan makanan;
@@ -26,8 +25,7 @@ public class TambahActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_et);
-        dbHelper = new DataHelper(this);
-        dbHelper.getWritableDatabase();
+        dbHelper = new DataHelper(TambahActivity.this);
         makanan = new Makanan();
         et_tambah = (EditText)findViewById(R.id.et_tambah);
         bt_tambah = (Button)findViewById(R.id.bt_tambah);
@@ -40,8 +38,9 @@ public class TambahActivity extends AppCompatActivity {
     }
 
     private void addToDatabase() {
+        dbHelper.getWritableDatabase();
         String input = et_tambah.getText().toString();
-        Toast.makeText(this, dbHelper.test, Toast.LENGTH_SHORT).show();
+        Toast.makeText(TambahActivity.this, dbHelper.test, Toast.LENGTH_SHORT).show();
         if(!input.isEmpty()){
             //int urut=dbHelper.getCount();
 //            makanan.setId(urut);
