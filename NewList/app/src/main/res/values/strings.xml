@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">NewList</string>
+    <string-array name="makanan">
+        <item>Alpukat</item>
+        <item>Ayam</item>
+        <item>Bakso</item>
+        <item>Durian</item>
+        <item>Rendang</item>
+        <item>Sate</item>
+        <item>Soto</item>
+    </string-array>
+</resources>
