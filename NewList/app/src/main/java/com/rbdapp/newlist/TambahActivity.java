@@ -40,14 +40,13 @@ public class TambahActivity extends AppCompatActivity {
     private void addToDatabase() {
         dbHelper.getWritableDatabase();
         String input = et_tambah.getText().toString();
-        Toast.makeText(TambahActivity.this, dbHelper.test, Toast.LENGTH_SHORT).show();
         if(!input.isEmpty()){
-            //int urut=dbHelper.getCount();
-//            makanan.setId(urut);
-//            makanan.setNama(input);
-//            makanan.setPhoto(R.mipmap.img1_foreground+(urut*3));
-//            dbHelper.addRecord(makanan);
-            //Toast.makeText(this, "Add "+input+" Berhasil", Toast.LENGTH_SHORT).show();
+            String sql1 = "Select * From makanan";
+            int urut=dbHelper.getCount(sql1);
+            int photo = R.mipmap.img1_foreground + (urut*3);
+            String sql2 = "Insert Into makanan Values('"+urut+"','"+input+"','"+photo+"')";
+            dbHelper.insert(sql2);
+            Toast.makeText(this, Integer.toString(urut), Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(this, "Tidak Boleh Kosong", Toast.LENGTH_SHORT).show();
         }

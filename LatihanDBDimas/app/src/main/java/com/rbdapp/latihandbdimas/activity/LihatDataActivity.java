@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.os.Bundle;
 
@@ -19,6 +20,7 @@ public class LihatDataActivity extends AppCompatActivity {
     MahasiswaAdapter adapter;
     ArrayList<Mahasiswa> data;
     AppDatabase db;
+    SwipeRefreshLayout swipe;
 
 
     @Override
@@ -26,9 +28,14 @@ public class LihatDataActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lihat_data);
         getSupportActionBar().setTitle("Data Mahasiswa");
-
+        swipe = findViewById(R.id.swipe_refresh);
         recyclerView = findViewById(R.id.recycle_mahasiswa);
-
+        swipe.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                getData();
+            }
+        });
         db = Room.databaseBuilder(getApplicationContext(),AppDatabase.class,"db_mahasiswa").allowMainThreadQueries().build();
         getData();
     }
@@ -39,5 +46,6 @@ public class LihatDataActivity extends AppCompatActivity {
         adapter = new MahasiswaAdapter(getApplicationContext(),data);
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         recyclerView.setAdapter(adapter);
+        swipe.setRefreshing(false);
     }
 }

@@ -32,6 +32,7 @@ public class TambahDataActivity extends AppCompatActivity {
         setContentView(R.layout.activity_tambah_data);
         db = Room.databaseBuilder(getApplicationContext(),
                 AppDatabase.class,"db_mahasiswa").build();
+        db.
         edt_asal = findViewById(R.id.edt_asal);
         edt_nama = findViewById(R.id.edt_nama);
         edt_nim = findViewById(R.id.edt_nim);
@@ -40,7 +41,7 @@ public class TambahDataActivity extends AppCompatActivity {
         mahasiswa = (Mahasiswa) getIntent().getSerializableExtra("data");
 
         if(mahasiswa!=null){
-            edt_nim.setText((mahasiswa.getNim()));
+            edt_nim.setText((Integer.toString(mahasiswa.getNim())));
             edt_nama.setText((mahasiswa.getNama()));
             edt_asal.setText((mahasiswa.getAlamat()));
             btn_submit.setText("Update");
@@ -55,7 +56,7 @@ public class TambahDataActivity extends AppCompatActivity {
                 }
             });
         }
-        else
+        else{
         btn_submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -68,6 +69,7 @@ public class TambahDataActivity extends AppCompatActivity {
                 startActivity(new Intent(TambahDataActivity.this, LihatDataActivity.class));
             }
         });
+        }
         getSupportActionBar().setTitle("Tambah Data Mahasiswa");
     }
     @SuppressLint("StaticFieldLeak")
