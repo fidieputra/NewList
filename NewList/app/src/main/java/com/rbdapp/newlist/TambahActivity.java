@@ -25,7 +25,7 @@ public class TambahActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_et);
-        dbHelper = new DataHelper(TambahActivity.this);
+        dbHelper = new DataHelper(this);
         makanan = new Makanan();
         et_tambah = (EditText)findViewById(R.id.et_tambah);
         bt_tambah = (Button)findViewById(R.id.bt_tambah);
