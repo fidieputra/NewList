@@ -4,10 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.rbdapp.latihandbdimas.R;
 import com.rbdapp.latihandbdimas.database.AppDatabase;
@@ -38,10 +40,25 @@ public class TambahDataActivity extends AppCompatActivity {
                 mahasiswa.setNim(Integer.parseInt(edt_nim.getText().toString()));
                 mahasiswa.setNama(edt_nama.getText().toString());
                 mahasiswa.setAlamat(edt_asal.getText().toString());
-                db.mahasiswaDAO().insertMahasiswa(mahasiswa);
+                insertMahasiswa(mahasiswa);
             }
         });
-
         getSupportActionBar().setTitle("Tambah Data Mahasiswa");
+    }
+    public void insertMahasiswa(final Mahasiswa mahasiswa){
+        new AsyncTask<Void,Void,Long>(){
+
+            @Override
+            protected Long doInBackground(Void... voids) {
+                long status = db.mahasiswaDAO().insertMahasiswa(mahasiswa);
+                return status;
+            }
+
+            @Override
+            protected void onPostExecute(Long aLong) {
+                super.onPostExecute(aLong);
+                Toast.makeText(TambahDataActivity.this,"Data berhasil di inser",Toast.LENGTH_SHORT);
+            }
+        }.execute();
     }
 }
